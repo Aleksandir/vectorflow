@@ -22,6 +22,8 @@ from llama_index import download_loader
 from shared.vectorflow_request import VectorflowRequest
 from services.rabbitmq.rabbit_service import create_connection_params
 from pika.exceptions import AMQPConnectionError
+from shared.utils import update_batch_and_job_status
+from shared.utils import update_batch_and_job_status
 
 logging.basicConfig(filename='./extract-log.txt', level=logging.INFO)
 logging.basicConfig(filename='./extract-error-log.txt', level=logging.ERROR)

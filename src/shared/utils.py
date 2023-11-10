@@ -2,6 +2,10 @@ import uuid
 import requests
 import json
 
+from services.database import batch_service, job_service
+from shared.batch_status import BatchStatus
+from shared.job_status import JobStatus
+
 def generate_uuid_from_tuple(t, namespace_uuid='6ba7b810-9dad-11d1-80b4-00c04fd430c8'):
     namespace = uuid.UUID(namespace_uuid)
     name = "-".join(map(str, t))
@@ -31,3 +35,11 @@ def send_embeddings_to_webhook(embedded_chunks: list[dict], job):
     )
 
     return response
+
+
+def update_batch_and_job_status(job_id, status, batch_id):
+    if status == BatchStatus.COMPLETED:
+        job_service.update_job_with_batch(job_id, status)
+    elif status == BatchStatus.FAILED:
+        batch_service.update_batch_status(batch_id, status)
+        job_service.update_job_status(job_id, JobStatus.FAILED)

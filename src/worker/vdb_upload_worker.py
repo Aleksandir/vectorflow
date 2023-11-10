@@ -30,6 +30,7 @@ from shared.utils import generate_uuid_from_tuple
 from urllib.parse import quote_plus
 from services.rabbitmq.rabbit_service import create_connection_params
 from pika.exceptions import AMQPConnectionError
+from shared.utils import update_batch_and_job_status
 
 logging.basicConfig(filename='./vdb-upload-log.txt', level=logging.INFO)
 logging.basicConfig(filename='./vdb-upload-errors.txt', level=logging.ERROR)

@@ -18,6 +18,7 @@ from shared.batch_status import BatchStatus
 from services.database import job_service
 from shared.utils import send_embeddings_to_webhook
 from shared.job_status import JobStatus
+from shared.utils import update_batch_and_job_status
 
 model = None
 publish_channel = None
